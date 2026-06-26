@@ -2,13 +2,13 @@
 
 #include "raylib.h"
 
-#include "aniengine/aniengine.h"
+#include "animengine/animengine.h"
 
 int main() {
     const int screenWidth = 800;
     const int screenHeight = 600;
 
-    InitWindow(screenWidth, screenHeight, "AniEngine Demo");
+    InitWindow(screenWidth, screenHeight, "AnimEngine Demo");
 
     // A 3D camera looking at the origin.
     Camera3D camera = {0};
@@ -33,7 +33,7 @@ int main() {
         DrawGrid(10, 1.0f);  // ground reference grid
         EndMode3D();
 
-        DrawText(TextFormat("AniEngine version: %s", aniengine::version()), 10, 10, 20, DARKGRAY);
+        DrawText(TextFormat("AnimEngine version: %s", animengine::version()), 10, 10, 20, DARKGRAY);
         DrawFPS(screenWidth - 90, 10);
 
         EndDrawing();

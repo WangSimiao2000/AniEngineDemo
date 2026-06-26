@@ -13,3 +13,6 @@ CTestTestfile.cmake
 .vscode/
 .idea/
 *.user
+
+# clangd / editor cache
+.cache/

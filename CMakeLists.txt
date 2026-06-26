@@ -13,13 +13,13 @@ set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(BUILD_GAMES    OFF CACHE BOOL "" FORCE)
 add_subdirectory(external/raylib)
 
-# AniEngine: the animation library under test.
+# AnimEngine: the animation library under test.
 add_subdirectory(external/AniEngine)
 
 # ---- Demo executable ----
 add_executable(demo src/main.cpp)
 target_link_libraries(demo
     PRIVATE
-        AniEngine::aniengine
+        AnimEngine::animengine
         raylib
 )
