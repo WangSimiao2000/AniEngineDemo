@@ -5,14 +5,40 @@
 #include "aniengine/aniengine.h"
 
 int main() {
-    // Verify AniEngine links and works.
-    std::printf("AniEngine version: %s\n", aniengine::version());
+    const int screenWidth = 800;
+    const int screenHeight = 600;
 
-    // Verify raylib links and works (no window / display needed for this call).
-    SetRandomSeed(42);
-    std::printf("raylib linked OK, sample random value: %d\n", GetRandomValue(1, 100));
+    InitWindow(screenWidth, screenHeight, "AniEngine Demo");
 
-    // The real visual demo (InitWindow / DrawCube driven by aniengine::Curve)
-    // will replace this once the curve module exists.
+    // A 3D camera looking at the origin.
+    Camera3D camera = {0};
+    camera.position = (Vector3){6.0f, 6.0f, 6.0f};  // where the camera sits
+    camera.target = (Vector3){0.0f, 0.0f, 0.0f};    // what it looks at
+    camera.up = (Vector3){0.0f, 1.0f, 0.0f};        // which way is "up"
+    camera.fovy = 45.0f;                            // field of view (degrees)
+    camera.projection = CAMERA_PERSPECTIVE;
+
+    const Vector3 cubePosition = {0.0f, 0.0f, 0.0f};
+
+    SetTargetFPS(60);
+
+    // Render loop: runs until the window is closed (ESC or close button).
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        BeginMode3D(camera);
+        DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
+        DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+        DrawGrid(10, 1.0f);  // ground reference grid
+        EndMode3D();
+
+        DrawText(TextFormat("AniEngine version: %s", aniengine::version()), 10, 10, 20, DARKGRAY);
+        DrawFPS(screenWidth - 90, 10);
+
+        EndDrawing();
+    }
+
+    CloseWindow();
     return 0;
 }
