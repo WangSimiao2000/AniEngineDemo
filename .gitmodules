@@ -1,0 +1,3 @@
+[submodule "external/AniEngine"]
+	path = external/AniEngine
+	url = git@github.com:WangSimiao2000/MiaoAnimEngine.git
